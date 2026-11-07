@@ -36,4 +36,19 @@ public final class ElectionViews {
     public record ElectionResults(String election, String scope, Ballot ballot, long totalVotes, String basis,
                                   List<ListResult> lists, Attribution attribution) {
     }
+
+        /** One page of a larger list. page starts at 0. */
+    public record PagedResult<T>(List<T> items, int page, int size, long totalItems, int totalPages) {
+    }
+
+    /** turnoutRate is a fraction between 0 and 1, as given by the source. */
+    public record ConstituencySummary(long id, int sourceId, String name, Ballot ballot, long regionId,
+                                      String region, int seats, BigDecimal turnoutRate, long totalVotes) {
+    }
+
+    public record ConstituencyDetail(long id, int sourceId, String name, Ballot ballot, long regionId,
+                                     String region, String wilaya, String prefectureOrProvince,
+                                     String subPrefecture, int seats, BigDecimal turnoutRate, long totalVotes,
+                                     String basis, List<ListResult> lists, Attribution attribution) {
+    }
 }
